@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "734555265005",
+    "firebase_url": "https://teacherreachermobileandr-5975c.firebaseio.com",
+    "project_id": "teacherreachermobileandr-5975c",
+    "storage_bucket": "teacherreachermobileandr-5975c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:734555265005:android:8c5c37a3e2fdda73",
+        "android_client_info": {
+          "package_name": "com.example.heylen.teacherreachermobileapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "734555265005-rj7m9fhpo3aockcm1bth8nbrjl9rhhqu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.heylen.teacherreachermobileapp",
+            "certificate_hash": "590fca948751df03ae8380d048e805869b4b7e44"
+          }
+        },
+        {
+          "client_id": "734555265005-jp315nlurfr796ub8f1he14r7clphfg4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCq-HWbyd2GhGZCqWTvOXti3a_o-uQPCjM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "734555265005-jp315nlurfr796ub8f1he14r7clphfg4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
