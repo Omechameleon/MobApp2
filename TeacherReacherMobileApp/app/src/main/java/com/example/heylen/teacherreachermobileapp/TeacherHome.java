@@ -214,4 +214,8 @@ public class TeacherHome extends AppCompatActivity implements View.OnClickListen
         public String leeftijd;
         public String vakken;
     }
+
+    @Override
+    public void onBackPressed(){
+    }
 }

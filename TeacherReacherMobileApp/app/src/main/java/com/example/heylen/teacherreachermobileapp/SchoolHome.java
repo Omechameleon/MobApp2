@@ -215,4 +215,8 @@ public class SchoolHome extends AppCompatActivity implements View.OnClickListene
         public String locatie;
         public String TorS;
     }
+
+    @Override
+    public void onBackPressed(){
+    }
 }
