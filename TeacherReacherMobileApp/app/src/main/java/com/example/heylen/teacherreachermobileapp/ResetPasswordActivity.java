@@ -55,6 +55,11 @@ public class ResetPasswordActivity extends AppCompatActivity implements View.OnC
                                 Intent myIntent = new Intent(ResetPasswordActivity.this, LoginActivity.class);
                                 ResetPasswordActivity.this.startActivity(myIntent);
                             }
+                            if(!task.isSuccessful())
+                            {
+                                Toast.makeText(getApplicationContext(), "Er is iets misgelopen. Gelieve het ingegeven emailadres na te kijken.", Toast.LENGTH_LONG).show();
+                            }
+
                         }
                     });
         }
