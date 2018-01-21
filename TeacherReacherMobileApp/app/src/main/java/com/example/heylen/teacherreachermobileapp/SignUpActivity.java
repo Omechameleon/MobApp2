@@ -69,7 +69,11 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         {
             return;
         }
-        
+
+        //Registreren van de authenticatiegegevens van de aangemaakte gebruiker
+        //Dit zijn het emailadres en ingegeven paswoord
+        //Deze authenticatie staat los van de database
+        //Deze vullen we verder in de methode in
         mAuth.createUserWithEmailAndPassword(email, password1)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>()
                 {
@@ -78,6 +82,9 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                     {
                         if (task.isSuccessful())
                         {
+                            //Als de gebruiker succesvol werd aangemaakt controleren we of het een leerkracht of school is
+                            //Aan de hand hiervan bepalen we dan wat we wegschrijven naar de database
+                            //We sturen de gebruiker ook meteen door naar zijn bijbehorende homepagina
                             FirebaseUser user = mAuth.getCurrentUser();
                             String uid = user.getUid();
                             if(TorS.equals("School")){
@@ -110,7 +117,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
 
     private boolean validation(String email, String password1, String password2, int radioButtonID) {
-
+        //Per if-statement spreekt de Toast-text voor zich
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(getApplicationContext(), "Geef een emailadres in!", Toast.LENGTH_SHORT).show();
             return false;
@@ -143,11 +150,13 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
     private void writeNewTeacher(String userId) {
         Teacher user = new Teacher(userId);
+        //We schrijven de nieuwe leerkracht naar de database
         mDatabase.child("teacher").child(userId).setValue(user);
     }
 
     private void writeNewSchool(String userId) {
         School school = new School(userId);
+        //We schrijven de nieuwe school naar de database
         mDatabase.child("school").child(userId).setValue(school);
     }
 

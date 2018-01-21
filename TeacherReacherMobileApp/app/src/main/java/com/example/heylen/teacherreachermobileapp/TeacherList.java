@@ -256,7 +256,6 @@ public class TeacherList extends AppCompatActivity implements View.OnClickListen
             public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id) {
                 final Teacher clickedTeacher = teacherList.get(position);
 
-
                 AlertDialog alertDialog = new AlertDialog.Builder(TeacherList.this).create();
                 alertDialog.setTitle("Bevestig uw keuze");
                 alertDialog.setMessage("Weet u zeker dat u leerkracht " + clickedTeacher.naam + " wil contacteren?");

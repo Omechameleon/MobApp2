@@ -147,7 +147,9 @@ public class EditSchool extends AppCompatActivity implements View.OnClickListene
         String location = ((EditText) findViewById(R.id.schoolLocationEditText)).getText().toString();
         String type = ((EditText) findViewById(R.id.schoolTypeEditText)).getText().toString();
         if (v == saveButton) {
+            //Controler of er gegevens zijn ingegeven
             if (validation(name, location, type)) {
+                //De gegevens naar de database schrijven
                 writeSchool(uid, name, location, type);
                 Intent myIntent = new Intent(EditSchool.this, SchoolHome.class);
                 EditSchool.this.startActivity(myIntent);

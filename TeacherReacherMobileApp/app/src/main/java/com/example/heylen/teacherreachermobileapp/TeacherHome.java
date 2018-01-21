@@ -62,6 +62,7 @@ public class TeacherHome extends AppCompatActivity implements View.OnClickListen
         mDatabase = FirebaseDatabase.getInstance().getReference();
         myRef = mDatabase.child("teacher/");
 
+        //We halen de data voor deze gebruiker op uit de database en vullen deze in op het scherm
         myRef.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -82,16 +83,16 @@ public class TeacherHome extends AppCompatActivity implements View.OnClickListen
         mNavItems.add(new NavItem("Profiel bewerken", "Maak hier aanpassingen aan uw profiel"));
         mNavItems.add(new NavItem("Uitloggen", "Log hier uit"));
 
-        // DrawerLayout
+        //DrawerLayout
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
 
-        // Populate the Navigation Drawer with options
+        //Vul de Navigation Drawer met opties
         mDrawerPane = (RelativeLayout) findViewById(R.id.drawerPane);
         mDrawerList = (ListView) findViewById(R.id.navList);
         DrawerListAdapter adapter = new DrawerListAdapter(this, mNavItems);
         mDrawerList.setAdapter(adapter);
 
-        // Drawer Item click listeners
+        //Itemclicklisteners
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -132,7 +133,7 @@ public class TeacherHome extends AppCompatActivity implements View.OnClickListen
             TeacherHome.this.startActivity(myIntent);
         }
 
-        // Close the drawer
+        //Sluit de drawer
         mDrawerLayout.closeDrawer(mDrawerPane);
     }
 

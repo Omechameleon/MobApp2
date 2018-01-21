@@ -62,6 +62,8 @@ public class SchoolHome extends AppCompatActivity implements View.OnClickListene
         ((TextView) findViewById(R.id.menuMail)).setText(email);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         myRef = mDatabase.child("school/");
+
+        //Vraag de juiste data op van de database en vul deze in op het scherm
         myRef.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

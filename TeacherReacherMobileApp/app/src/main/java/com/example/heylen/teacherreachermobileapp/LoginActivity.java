@@ -44,17 +44,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         ResetPasswordButton = (Button) this.findViewById(R.id.password_reset_button);
 
         mAuth = FirebaseAuth.getInstance();
+        //Controleren of er een user signed in is
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     // User is signed in
-                    //mAuth.signOut();
                     Intent myIntent = new Intent(LoginActivity.this, MainActivity.class);
                     LoginActivity.this.startActivity(myIntent);
 
-                } else {
+                }
+                else {
                     // User is signed out
                 }
             }
@@ -82,10 +83,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
+        //Als op de loginknop gedrukt is
         if( v == SignInButton) {
             EmailString = EmailEditText.getText().toString();
             PasswordString = PasswordEditText.getText().toString();
 
+            //We voeren eerst een controle uit of er gegevens zijn ingegeven en of het ingegeven paswoord lang genoeg is (anders problemen met firebase)
             if (EmailString.equals("") || PasswordString.equals("") || PasswordString.length() < 6)
             {
                 Toast.makeText(getApplicationContext(), "Gelieve uw gegevens volledig in te geven!", Toast.LENGTH_LONG).show();
@@ -116,10 +119,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
 
         }
+        //Als op de signupknop gedrukt is
         if( v == SignUpButton){
             Intent myIntent = new Intent(LoginActivity.this, SignUpActivity.class);
             LoginActivity.this.startActivity(myIntent);
         }
+        //Als op de resetpaswoordknop gedrukt is
         if (v == ResetPasswordButton)
         {
             Intent myIntent = new Intent(LoginActivity.this, ResetPasswordActivity.class);
@@ -127,6 +132,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
+    //Als de de backknop van de gsm gedrukt wordt willen we niet dat deze terug gaat naar de homepagina vanwaar werd uitgelogd
+    //We sluiten de app zelf omdat dit de meest logische actie is om uit te voeren
     @Override
     public void onBackPressed(){
         Intent intent = new Intent(Intent.ACTION_MAIN);

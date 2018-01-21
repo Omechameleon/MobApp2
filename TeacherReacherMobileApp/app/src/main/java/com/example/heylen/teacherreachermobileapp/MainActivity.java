@@ -43,6 +43,12 @@ public class MainActivity extends AppCompatActivity{
         myRefTeacher = mDatabase.child("teacher/");
         myRefSchool = mDatabase.child("school/");
 
+
+        //We controleren in de database of er voor de huidige gebruiker data bestaat in
+        //de school- of teachertak van de database
+        //Als de gebruiker zich in een van deze bevindt zal hij/zij zich niet in de andere bevinden
+        //Op basis hiervan verwijzen we de gebruiker door naar de juiste pagina's
+
         myRefTeacher.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -72,18 +78,25 @@ public class MainActivity extends AppCompatActivity{
 
     public void Redirect()
     {
+        //Indien de gebruiker een leerkracht is
         if(teacher!=null)
         {
             Intent myIntent = new Intent(MainActivity.this, TeacherHome.class);
             MainActivity.this.startActivity(myIntent);
             return;
         }
+        //Indien de gebruiker een school is
         if(school!=null)
         {
             Intent myIntent = new Intent(MainActivity.this, SchoolHome.class);
             MainActivity.this.startActivity(myIntent);
             return;
         }
+        //Indien de gebruiker in geen van beide takken van de database zit
+        //In dit geval zou de gebruiker zich niet eens hier mogen bevinden tenzij er iets is misgelopen
+        //bij het registreren.
+        //Voor de veiligheid heb ik dit ingebouwd
+        //De gebruiker zal teruggestuurd worden naar de LoginActivity
         else{
             FirebaseAuth.getInstance().signOut();
             Intent myIntent = new Intent(MainActivity.this, LoginActivity.class);

@@ -158,6 +158,7 @@ public class EditTeacher extends AppCompatActivity implements View.OnClickListen
         }
     }
 
+    //De aangepaste gegevens naar de database schrijven
     private void writeTeacher(String userId, String name, String age, String location, String number, String classes, String about) {
         Teacher user = new Teacher();
         user.Set(userId, name, age, location, number, classes, about);
@@ -174,6 +175,7 @@ public class EditTeacher extends AppCompatActivity implements View.OnClickListen
         }
     }
 
+    //We controleren of alles ingevuld is
     private boolean validation(String name, String age, String location, String number, String classes, String about) {
 
         if (TextUtils.isEmpty(name)) {
