@@ -4,9 +4,11 @@ package com.example.heylen.teacherreachermobileapp;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -32,6 +34,7 @@ public class SchoolHome extends AppCompatActivity implements View.OnClickListene
     private ListView mDrawerList;
     private RelativeLayout mDrawerPane;
     private DrawerLayout mDrawerLayout;
+    private ActionBarDrawerToggle mDrawerToggle;
 
     private Button signoutButton;
 
@@ -39,7 +42,7 @@ public class SchoolHome extends AppCompatActivity implements View.OnClickListene
 
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
-    private  DatabaseReference myRef;
+    private DatabaseReference myRef;
 
     private School school;
 
@@ -47,6 +50,8 @@ public class SchoolHome extends AppCompatActivity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_school_home);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         signoutButton = (Button)findViewById(R.id.logoutButton);
         signoutButton.setOnClickListener(this);
@@ -91,9 +96,23 @@ public class SchoolHome extends AppCompatActivity implements View.OnClickListene
                 selectItemFromDrawer(position);
             }
         });
+
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
+
+        mDrawerLayout.addDrawerListener(mDrawerToggle);
+        mDrawerToggle.syncState();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(mDrawerToggle.onOptionsItemSelected(item)){
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     private void selectItemFromDrawer(int position) {
         if (position == 0)
